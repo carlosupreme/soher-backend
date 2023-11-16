@@ -20,6 +20,7 @@ class AuthApiController extends Controller
         ]);
 
         $user = User::create($data);
+        $user->assignRole(is_null($role = $request->role) ? "client" : $role);
 
         return response()->json([
             'statusText' => 'Registered Successfully',
